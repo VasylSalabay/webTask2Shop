@@ -1,5 +1,5 @@
-﻿//[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebUI.App_Start.NinjectWebCommon), "Start")]
-//[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebUI.App_Start.NinjectWebCommon), "Stop")]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebUI.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebUI.App_Start.NinjectWebCommon), "Stop")]
 
 namespace WebUI.App_Start
 {
@@ -10,6 +10,7 @@ namespace WebUI.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Web.Common.WebHost;
 
     public static class NinjectWebCommon
     {
@@ -19,12 +20,12 @@ namespace WebUI.App_Start
         /// Starts the application
         /// </summary>
         /// ////////////////////////////////////////////////////////////////////////////////
-        //public static void Start()
-        //{
-        //    DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
-        //    DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-        //    bootstrapper.Initialize(CreateKernel);
-        //}
+        public static void Start()
+        {
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+            bootstrapper.Initialize(CreateKernel);
+        }
         /////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Stops the application.
